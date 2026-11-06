@@ -16,7 +16,7 @@ jobs:
 
       - name: Install Video Tools
         run: |
-          pip install moviepy==1.0.3 Pillow numpy decorator imageio imageio-ffmpeg
+          pip install moviepy==1.0.3 Pillow==9.5.0 numpy decorator imageio imageio-ffmpeg
 
       - name: Make the Video
         run: python assemble.py
