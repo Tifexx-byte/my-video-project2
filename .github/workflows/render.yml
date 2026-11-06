@@ -1,0 +1,28 @@
+name: Make My Video
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get my files
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Video Tools
+        run: |
+          pip install moviepy==1.0.3 Pillow numpy decorator imageio imageio-ffmpeg
+
+      - name: Make the Video
+        run: python assemble.py
+
+      - name: Save the Video for Download
+        uses: actions/upload-artifact@v4
+        with:
+          name: My-Finished-Video
+          path: final_video.mp4
